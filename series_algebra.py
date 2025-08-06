@@ -2,7 +2,7 @@ import math
 import pandas as pd
 import numpy as np
 
-
+from numbers import Real
 from typing import Union, List, Optional
 
 def rolling_volatility(close_prices: pd.Series, window: Optional[int] = 21) -> pd.Series:
@@ -20,7 +20,7 @@ def rolling_avg(series: pd.Series, window: Optional[int] = 7) -> pd.Series:
 def rolling_var(close_prices: pd.Series, window: Optional[int] = 21) -> pd.Series:
     return close_prices.pct_change().rolling(window=window).var()
 
-def add_timerespective(first: pd.Series, second: Union[pd.Series, int, float]) -> pd.Series:
+def add_timerespective(first: pd.Series, second: Union[pd.Series, Real]) -> pd.Series:
     if isinstance(second, pd.Series):
         if second.index==first.index:
             return first+second
@@ -36,7 +36,7 @@ def add(primary: pd.Series, secondary: pd.Series) -> pd.Series:
         primary.iloc[i] += secondary_values[i]
     return primary
 
-def subtract(first: pd.Series, second: Union[pd.Series, int, float]) -> pd.Series:
+def subtract(first: pd.Series, second: Union[pd.Series, Real]) -> pd.Series:
     if isinstance(second, pd.Series):
         if second.index==first.index:
             return first-second
@@ -60,3 +60,4 @@ def value_diff(series: pd.Series) -> List[int]:
     for i in range(1, len(vals)):
         diff.append(vals[i]-vals[i-1])
     return diff
+
