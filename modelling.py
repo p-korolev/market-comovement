@@ -80,18 +80,14 @@ class ComparativeModel(Display):
         self.der1_name, self.der2_name = primary_derivative.symbol, secondary_derivative.symbol
 
         # populate primary derivative price series
-        self.der1_prices = primary_derivative.get_price_history(price_timing=price_timing, 
-                                                                priod=date_period, 
-                                                                interval=time_interval)
+        self.der1_prices = primary_derivative.get_price_history(price_timing=price_timing, period=date_period, interval=time_interval)
         # in case of individual x,y plotting
         if xy_split:
             self.d1x = self.der1_prices.index.tolist()
             self.d1y = self.der1_prices.values.tolist()
 
         # populate secondary derivative price series
-        self.der2_prices = secondary_derivative.get_price_history(price_timing=price_timing,
-                                                                  period=date_period,
-                                                                  interval=time_interval)
+        self.der2_prices = secondary_derivative.get_price_history(price_timing=price_timing, period=date_period, interval=time_interval)
         if xy_split:
             self.d2x = self.der2_prices.index.tolist()
             self.d2y = self.der2_prices.values.tolist()
@@ -111,4 +107,5 @@ class ComparativeModel(Display):
 
 
     
+
         
