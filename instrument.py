@@ -3,16 +3,13 @@ import pandas as pd
 
 from typing import Optional, Union
 
-yf_lookup_der = ['stock', 
-                 'currency', 
-                 'exchange', 
-                 'fx']
+PRICEABLE_LOOKUP = ['stock', 'currency', 'exchange', 'fx']
 
 class Instrument:
     def __init__(self, type: str, name_symbol: Optional[str]):
         self.type = type
         self.symbol = name_symbol
-        if self.type in yf_lookup_der:
+        if self.type in PRICEABLE_LOOKUP:
             try:
                 self.load = yf.Ticker(self.symbol)
                 self.loaded = True
@@ -21,11 +18,10 @@ class Instrument:
                     "Instrument could not be loaded using internal libraries or is not priceable."  
                 )
 
-class Priceable:
-    def __init__(self, derivative: Instrument):
-        self.type = derivative.type
-        self.symbol = derivative.symbol
-        self.load = yf.Ticker(self.symbol)
+class Priceable(Instrument):
+    def __init__(self, type: str, name_symbol: str):
+        super().__init__(type=type, name_symbol=name_symbol)
+        self.priceable = True
 
     def get_price_history(self, price_timing: str, period: str, interval: str = None) -> pd.Series:
         '''
@@ -43,3 +39,4 @@ class Priceable:
         if interval==None:
             return self.load.history(period = period)['Volume']
         return self.load.history(period = period, interval = interval)['Volume']
+
