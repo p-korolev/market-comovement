@@ -61,7 +61,3 @@ class ScaledPricePlot():
         plt.legend()
         plt.show()
 
-p = ScaledPricePlot('XOM', 'CVX', 'AAPL')
-p.show()
-
-        
