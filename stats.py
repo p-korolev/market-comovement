@@ -12,7 +12,8 @@ def covariance(x: Union[pd.Series, np.ndarray], y: Union[pd.Series, np.ndarray])
     :param y: data series of reals
 
     **Examples**
-    
+
+    >>> from instrument import Priceable
     >>> xom = Priceable(type='stock', name_symbol='XOM').get_price_history(price_timing='Close', period='1mo')
     >>> cvx = Priceable(type='stock', name_symbol='CVX').get_price_history(price_timing='Close', period='1mo')
     >>> covariance(xom, cvx)
@@ -33,6 +34,7 @@ def cov_matrix(*x: Union[pd.Series, np.ndarray]) -> np.ndarray[Real]:
 
     **Examples**
     
+    >>> from instrument import Priceable
     >>> xom = Priceable(type='stock', name_symbol='XOM').get_price_history(price_timing='Close', period='1mo')
     >>> cvx = Priceable(type='stock', name_symbol='CVX').get_price_history(price_timing='Close', period='1mo')
     >>> shel = Priceable(type='stock', name_symbol='SHEL').get_price_history(price_timing='Close', period='1mo')
@@ -52,7 +54,8 @@ def correlation_matrix(*x: Union[pd.Series, np.ndarray]) -> np.ndarray[Real]:
     :param *x: series of reals
 
     **Examples**
-    
+
+    >>> from instrument import Priceable
     >>> xom = Priceable(type='stock', name_symbol='XOM').get_price_history(price_timing='Close', period='1mo')
     >>> cvx = Priceable(type='stock', name_symbol='CVX').get_price_history(price_timing='Close', period='1mo')
     >>> shel = Priceable(type='stock', name_symbol='SHEL').get_price_history(price_timing='Close', period='1mo')
@@ -73,7 +76,8 @@ def correlation(x: Union[pd.Series, np.ndarray], y: Union[pd.Series, np.ndarray]
     :param y: series of reals
 
     **Examples**
-    
+
+    >>> from instrument import Priceable
     >>> xom = Priceable(type='stock', name_symbol='XOM').get_price_history(price_timing='Close', period='1mo')
     >>> cvx = Priceable(type='stock', name_symbol='CVX').get_price_history(price_timing='Close', period='1mo')
     >>> correlation(x=xom, y=cvx)
@@ -89,8 +93,10 @@ def variance(x: Union[pd.Series, np.ndarray]) -> Real:
 
     **Examples**
 
+    >>> from instrument import Priceable
     >>> xom = Priceable(type='stock', name_symbol='XOM').get_price_history(price_timing='Close', period='1mo')
     >>> variance(xom)
     4.36387949368984
     '''
     return np.var(x)
+
