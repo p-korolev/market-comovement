@@ -12,7 +12,7 @@ class Instrument:
         self.type = type
         self.symbol = name_symbol
     
-    def load_instrument_data(self):
+    def load_instrument_data(self) -> None:
         if self.type in LOADABLE:
             try:
                 self.load = yf.Ticker(self.symbol)
@@ -99,3 +99,4 @@ class Priceable(Instrument):
         if interval==None:
             return self.load.history(period = period)['Volume']
         return self.load.history(period = period, interval = interval)['Volume'].astype(np.float64)
+
