@@ -5,7 +5,7 @@ import numpy as np
 from enum import Enum
 from typing import Optional, Union
 
-from priceables import LOADABLE 
+from quoteables import LOADABLE 
 
 class Instrument:
     def __init__(self, type: str, name_symbol: Optional[str]):
@@ -99,4 +99,5 @@ class Priceable(Instrument):
         if interval==None:
             return self.load.history(period = period)['Volume']
         return self.load.history(period = period, interval = interval)['Volume'].astype(np.float64)
+
 
