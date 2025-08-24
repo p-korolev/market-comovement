@@ -3,7 +3,7 @@
 
 from enum import Enum
 
-class LOADABLE(Enum):
+class LOADABLE(str, Enum):
     STOCK = "stock"
     CURRENCY = "currency"
     EXCHANGE = "exchange"
@@ -19,5 +19,6 @@ class LOADABLE(Enum):
         return item in cls._value2member_map_
 
     __contains__ = classmethod(__contains__)
+
 
 
