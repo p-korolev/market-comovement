@@ -1,4 +1,5 @@
 # Formalizing commonly used yf times #
+from enum import Enum
 
 class Interval(str, Enum):
     MINUTE = '1m'
