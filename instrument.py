@@ -32,7 +32,11 @@ class Priceable(Instrument):
             super().__init__(type=type, name_symbol=name_symbol)
             self.load_instrument_data()
         
-    def get_price_history(self, period: Union[Period, str], interval: Union[Interval, str] = None, price_timing: Union[QuoteTiming, str] = QuoteTiming.CLOSE) -> pd.Series:
+    def get_price_history(self, 
+                          period: Union[Period, str], 
+                          interval: Union[Interval, str] = None, 
+                          price_timing: Union[QuoteTiming, str] = QuoteTiming.CLOSE
+                         ) -> pd.Series:
         '''
         Returns price history as time series.
 
@@ -101,6 +105,7 @@ class Priceable(Instrument):
         if interval==None:
             return self.load.history(period = period)['Volume']
         return self.load.history(period = period, interval = interval)['Volume'].astype(np.float64)
+
 
 
 
