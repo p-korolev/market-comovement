@@ -1,3 +1,5 @@
+# Formalizing commonly used yf times #
+
 class Interval(str, Enum):
     MINUTE = '1m'
     TWO_MINUTE = '2m'
