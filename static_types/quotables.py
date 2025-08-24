@@ -1,5 +1,5 @@
-# Static yf loadable instrument types. #
-# Used for checking if yf can load quote data for given instrument. #
+# Static yf loadable instrument types #
+# Used for checking if yf can load quote data for given instrument #
 
 from enum import Enum
 
@@ -19,4 +19,5 @@ class LOADABLE(Enum):
         return item in cls._value2member_map_
 
     __contains__ = classmethod(__contains__)
+
 
