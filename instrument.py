@@ -5,7 +5,8 @@ import numpy as np
 from enum import Enum
 from typing import Optional, Union
 
-from quoteables import LOADABLE 
+from static_types.quoteables import LOADABLE 
+from static_types.timerange import Interval, Period
 
 class Instrument:
     def __init__(self, type: str, name_symbol: Optional[str]):
@@ -30,7 +31,7 @@ class Priceable(Instrument):
             super().__init__(type=type, name_symbol=name_symbol)
             self.load_instrument_data()
         
-    def get_price_history(self, price_timing: str, period: str, interval: str = None) -> pd.Series:
+    def get_price_history(self, period: Union[Period, str], interval: Union[Interval, str] = None, price_timing: str = 'Close') -> pd.Series:
         '''
         Returns price history as time series.
 
@@ -62,10 +63,10 @@ class Priceable(Instrument):
         Name: Open, Length: 63, dtype: float64
         '''
         if interval==None:
-            return self.load.history(period = period)[price_timing]
-        return self.load.history(period = period, interval = interval)[price_timing].astype(np.float64)
+            return self.load.history(period = str(period))[price_timing]
+        return self.load.history(period = str(period), interval = str(interval))[price_timing].astype(np.float64)
 
-    def get_volume_history(self, period: str, interval: str = None) -> pd.Series:
+    def get_volume_history(self, period: Union[Period, str], interval: Union[Interval, str] = None) -> pd.Series:
         '''
         Returns volume history as time series.
 
@@ -97,7 +98,8 @@ class Priceable(Instrument):
         Name: Volume, Length: 63, dtype: int64
         '''
         if interval==None:
-            return self.load.history(period = period)['Volume']
-        return self.load.history(period = period, interval = interval)['Volume'].astype(np.float64)
+            return self.load.history(period = str(period))['Volume']
+        return self.load.history(period = str(period), interval = str(interval))['Volume'].astype(np.float64)
+
 
 
