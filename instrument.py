@@ -68,8 +68,12 @@ class Priceable(Instrument):
         Name: Open, Length: 63, dtype: float64
         '''
         if interval==None:
-            return self.load.history(period = period)[price_timing]
-        return self.load.history(period = period, interval = interval)[price_timing].astype(np.float64)
+            s = self.load.history(period = period)[price_timing].astype(np.float64)
+            s.name = f"{self.symbol} {str(price_timing)}"
+            return s
+        s = self.load.history(period = period, interval = interval)[price_timing].astype(np.float64)
+        s.name = f"{self.symbol} {str(price_timing)}"
+        return s
 
     def get_volume_history(self, period: Union[Period, str], interval: Union[Interval, str] = None) -> pd.Series:
         '''
