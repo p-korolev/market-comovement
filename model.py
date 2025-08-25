@@ -88,11 +88,5 @@ class HMM:
         plt.ylabel("Price")
         plt.legend()
         plt.show()
-        
-
-h = HMM('CVX', 'XOM', hidden_states=4, data_period='1mo', quote_interval='1d')
-h.fit_priceables()
-print(h.frame)
-h.display()
 
         
