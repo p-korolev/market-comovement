@@ -90,6 +90,9 @@ class HMM:
         pass
 
     def display(self):
+        '''
+        Plot show method that displays prices and hidden states.
+        '''
         for i in range(self.model.n_components):
             state_data = self.frame[self.frame['Hidden_State']==i]
             plt.plot(state_data.index, state_data.iloc[:, 0], '.', label=f"State {i}")
@@ -101,4 +104,5 @@ class HMM:
         plt.show()
 
         
+
 
