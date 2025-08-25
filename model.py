@@ -53,6 +53,17 @@ class HMM:
                  data_period: Union[Period, str] = Period.DAY, 
                  quote_interval: Union[Interval, str] = Interval.MINUTE
                 ) -> None:
+        '''
+        Initiate Hidden Markov Model.
+
+        :param ticks_dependent: correlated tickers of priceables as string
+        :param hidden_states: number of hidden states for model
+        :param covariance_type: diag or full
+        :param iter: number of iterations for learning
+        :param quote_timing: Open, Close, High, Low
+        :param data_period: period for data lookback
+        :param quote_interval: interval between quotes during lookback period
+        '''
         if hidden_states<1:
             raise ValueError(
                 "Model requires at least 1 hidden state for fitting."
@@ -90,3 +101,4 @@ class HMM:
         plt.show()
 
         
+
