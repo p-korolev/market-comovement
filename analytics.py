@@ -1,3 +1,5 @@
+# Module for various analytic plot displays #
+
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
@@ -28,6 +30,21 @@ class PricePlot:
                  price_timing: Union[QuoteTiming, str] = QuoteTiming.OPEN,
                  period: Union[Period, str] = Period.DAY,
                  interval: Union[Interval, str] = Interval.MINUTE):
+    '''
+    Plot display class to plot price time series of priceables (*ticks) against one another - NOT SCALED.
+
+    **Usage**
+
+    Display prices as time series of stock S.
+
+    **Examples**
+
+    >>> enb_price = PricePlot('ENB', price_timing=QuoteTiming.CLOSE, period=Period.FIVE_DAY, interval=Interval.HOUR)
+    >>> enb_price.show() #displays time series chart
+
+    >>> enb_cvx_prices_day_seconds = PricePlot('ENB', 'CVX', price_timing=QuoteTiming.OPEN)
+    >>> enb_cvx_prices_day_seconds.show() #displays ENB raw prices against CVX for last day, by seconds
+    '''
         self.price_series = []
         for tick in ticks:
             self.price_series.append(
@@ -49,6 +66,18 @@ class ScaledPricePlot():
                  period: Union[Period, str] = Period.DAY,
                  interval: Union[Interval, str] = Interval.MINUTE,
                  scale_start: Real = 100):
+        '''
+        Plot display class to plot prices scaled to *scale_start* as time series of priceables (*ticks).
+
+        **Usage**
+    
+        Compare prices of stock X_1 against stock X_2. See differential between two or more priceables instruments.
+    
+        **Examples**
+    
+        >>> enb_cvx_prices_scaled = ScaledPricePlot('ENB', 'CVX', price_timing=QuoteTiming.CLOSE, period=Period.FIVE_DAY, interval=Interval.HOUR)
+        >>> enb_cvx_prices_scaled.show()
+        '''
         self.price_series = []
         for tick in ticks:
             self.price_series.append(
@@ -64,6 +93,7 @@ class ScaledPricePlot():
     def show(self) -> None:
         plt.legend()
         plt.show()
+
 
 
 
