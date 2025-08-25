@@ -25,9 +25,9 @@ class Plot:
 class PricePlot:
     def __init__(self, 
                  *ticks: str, 
-                 price_timing: Union[QuoteTiming, str] = 'Open',
-                 period: Union[Period, str] = '1d',
-                 interval: Union[Interval, str] = '1m'):
+                 price_timing: Union[QuoteTiming, str] = QuoteTiming.OPEN,
+                 period: Union[Period, str] = Period.DAY,
+                 interval: Union[Interval, str] = Interval.MINUTE):
         self.price_series = []
         for tick in ticks:
             self.price_series.append(
@@ -45,13 +45,14 @@ class PricePlot:
 class ScaledPricePlot():
     def __init__(self, 
                  *ticks: str, 
-                 price_timing: Union[QuoteTming, str] = 'Open',
-                 period: Union[Period, str] = '1d',
-                 interval: Union[Interval, str] = '1m',
+                 price_timing: Union[QuoteTming, str] = QuoteTiming.OPEN,
+                 period: Union[Period, str] = Period.DAY,
+                 interval: Union[Interval, str] = Interval.MINUTE,
                  scale_start: Real = 100):
         self.price_series = []
         for tick in ticks:
-            self.price_series.append(algebra.scale(
+            self.price_series.append(
+                algebra.scale(
                 Priceable(type=LOADABLE.STOCK, name_symbol=tick).get_price_history(price_timing=price_timing, period=period, interval=interval),
                 initial=scale_start)
                 )
@@ -63,5 +64,6 @@ class ScaledPricePlot():
     def show(self) -> None:
         plt.legend()
         plt.show()
+
 
 
