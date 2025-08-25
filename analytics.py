@@ -35,6 +35,11 @@ class PricePlot:
         '''
         Plot display class to plot price time series of priceables (*ticks) against one another - NOT SCALED.
 
+        :param ticks: priceable tickers as string
+        :param price_timing: Open, Close, High, Low
+        :param period: period range for data lookback
+        :param interval: interval for price quoting during lookback period
+
         **Usage**
 
         Display prices as time series of stock S.
@@ -72,6 +77,12 @@ class ScaledPricePlot:
         '''
         Plot display class to plot prices scaled to *scale_start* as time series of priceables (*ticks).
 
+        :param ticks: priceable tickers as string
+        :param price_timing: Open, Close, High, Low
+        :param period: period range for data lookback
+        :param interval: interval for price quoting during lookback period
+        :param scale_start: value of P_scaled(t_0)
+
         **Usage**
     
         Compare prices of stock X_1 against stock X_2. See differential between two or more priceables instruments.
@@ -102,12 +113,30 @@ class CompareStatDisplay:
     def __init__(self, 
                  leader: str, 
                  follower: str,
-                 period: Union[Period, str] = '1d',
-                 interval: Union[Interval, str] = '1m',
+                 period: Union[Period, str] = Period.DAY,
+                 interval: Union[Interval, str] = Interval.MINUTE,
                  quote_timing: Union[QuoteTiming, str] = QuoteTiming.CLOSE,
                  mal_window: Union[int, None] = None,
                  maf_window: Union[int, None] = None
                  ):
+        '''
+        Comparative display that includes two plots:
+            1. axs[0]: Scaled prices of sector leader against follower (Optional: moving averages, sector index price)
+            2. axs[1]: Price differential between leader and follower
+
+        :param leader: sector leader as ticker string
+        :param follower: sector follower as ticker string
+        :param period: period for data lookback
+        :param interval: interval for quoting throughout time period
+        :param quote_timing: Close, Open, High, Low
+        :param mal_window: (Optional) moving average window for leader priceable
+        :param maf_window: (Optional) moving average window for follower priceable
+
+        **Usage**
+
+        Compare price movement of two (hypothesized as) correlated priceables and their rolling averages, differentials.
+            
+        '''
         self.per = period
         self.intr = interval
         self.fig, self.axs = plt.subplots(2,1)
@@ -144,3 +173,4 @@ class CompareStatDisplay:
         self.axs[0].legend()
         self.axs[1].legend()
         plt.show()
+
