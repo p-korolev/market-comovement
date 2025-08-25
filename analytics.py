@@ -8,6 +8,9 @@ from numbers import Real
 import stats
 import algebra
 from instrument import Priceable
+from static_types.quoteables import LOADABLE
+from static_types.quote_timing import QuoteTiming
+from static_types.time_range import Interval, Period
 
 # base linear plot class
 class Plot:
@@ -22,13 +25,13 @@ class Plot:
 class PricePlot:
     def __init__(self, 
                  *ticks: str, 
-                 price_timing: str = 'Open',
-                 period: str = '1d',
-                 interval: str = '1m'):
+                 price_timing: Union[QuoteTiming, str] = 'Open',
+                 period: Union[Period, str] = '1d',
+                 interval: Union[Interval, str] = '1m'):
         self.price_series = []
         for tick in ticks:
             self.price_series.append(
-                Priceable(type='stock', name_symbol=tick).get_price_history(price_timing=price_timing, period=period, interval=interval)
+                Priceable(type=LOADABLE.STOCK, name_symbol=tick).get_price_history(price_timing=price_timing, period=period, interval=interval)
                 )
         i=0
         for s in self.price_series:
@@ -42,14 +45,14 @@ class PricePlot:
 class ScaledPricePlot():
     def __init__(self, 
                  *ticks: str, 
-                 price_timing: str = 'Open',
-                 period: str = '1d',
-                 interval: str = '1m',
+                 price_timing: Union[QuoteTming, str] = 'Open',
+                 period: Union[Period, str] = '1d',
+                 interval: Union[Interval, str] = '1m',
                  scale_start: Real = 100):
         self.price_series = []
         for tick in ticks:
             self.price_series.append(algebra.scale(
-                Priceable(type='stock', name_symbol=tick).get_price_history(price_timing=price_timing, period=period, interval=interval),
+                Priceable(type=LOADABLE.STOCK, name_symbol=tick).get_price_history(price_timing=price_timing, period=period, interval=interval),
                 initial=scale_start)
                 )
         i=0
@@ -60,4 +63,5 @@ class ScaledPricePlot():
     def show(self) -> None:
         plt.legend()
         plt.show()
+
 
