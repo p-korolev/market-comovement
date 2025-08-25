@@ -30,21 +30,21 @@ class PricePlot:
                  price_timing: Union[QuoteTiming, str] = QuoteTiming.OPEN,
                  period: Union[Period, str] = Period.DAY,
                  interval: Union[Interval, str] = Interval.MINUTE):
-    '''
-    Plot display class to plot price time series of priceables (*ticks) against one another - NOT SCALED.
+        '''
+        Plot display class to plot price time series of priceables (*ticks) against one another - NOT SCALED.
 
-    **Usage**
+        **Usage**
 
-    Display prices as time series of stock S.
+        Display prices as time series of stock S.
 
-    **Examples**
+        **Examples**
 
-    >>> enb_price = PricePlot('ENB', price_timing=QuoteTiming.CLOSE, period=Period.FIVE_DAY, interval=Interval.HOUR)
-    >>> enb_price.show() #displays time series chart
+        >>> enb_price = PricePlot('ENB', price_timing=QuoteTiming.CLOSE, period=Period.FIVE_DAY, interval=Interval.HOUR)
+        >>> enb_price.show() #displays time series chart
 
-    >>> enb_cvx_prices_day_seconds = PricePlot('ENB', 'CVX', price_timing=QuoteTiming.OPEN)
-    >>> enb_cvx_prices_day_seconds.show() #displays ENB raw prices against CVX for last day, by seconds
-    '''
+        >>> enb_cvx_prices_day_seconds = PricePlot('ENB', 'CVX', price_timing=QuoteTiming.OPEN)
+        >>> enb_cvx_prices_day_seconds.show() #displays ENB raw prices against CVX for last day, by seconds
+        '''
         self.price_series = []
         for tick in ticks:
             self.price_series.append(
@@ -62,7 +62,7 @@ class PricePlot:
 class ScaledPricePlot():
     def __init__(self, 
                  *ticks: str, 
-                 price_timing: Union[QuoteTming, str] = QuoteTiming.OPEN,
+                 price_timing: Union[QuoteTiming, str] = QuoteTiming.OPEN,
                  period: Union[Period, str] = Period.DAY,
                  interval: Union[Interval, str] = Interval.MINUTE,
                  scale_start: Real = 100):
@@ -95,5 +95,7 @@ class ScaledPricePlot():
         plt.show()
 
 
+p = ScaledPricePlot('CVX', 'XOM', price_timing='Close')
+p.show()
 
 
