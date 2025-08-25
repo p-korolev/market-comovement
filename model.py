@@ -89,7 +89,7 @@ class HMM:
     def infer_states(self) -> None:
         pass
 
-    def display(self):
+    def display(self) -> None:
         '''
         Plot show method that displays prices and hidden states.
         '''
@@ -104,5 +104,6 @@ class HMM:
         plt.show()
 
         
+
 
 
