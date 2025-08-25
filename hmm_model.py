@@ -5,6 +5,7 @@ import yfinance as yf
 import pandas as pd
 import numpy as np
 import ta
+
 from hmmlearn.hmm import GaussianHMM
 from typing import Union
 from numbers import Real
@@ -104,6 +105,7 @@ class HMM:
         plt.show()
 
         
+
 
 
 
