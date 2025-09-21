@@ -1,6 +1,6 @@
 # Intra-sector Comovement
 
-Short analysis on intra-sector pair price reversions.
+An informal analysis on intra-sector pair price reversions.
 
 ## Oversight
 
