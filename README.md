@@ -28,17 +28,17 @@ $$
 P_F(t_j) - P_F(t_i) = \frac{1}{r} (P_L(t_j) - P_L(t_i)) \text{ , } r \in \mathbb{R}
 $$
 
-Using an index scale, we can remove our proportion coefficient. Define $\phi: \mathbb{R} \to \mathbb{R^+}$ as,
+Using an index scale, we can remove our proportion coefficient. Define $\phi: \mathbb{R} \to \mathbb{R_{>0}}$ as,
 
 $$
 \phi(t) = \frac{P(t)}{P(t_0)} \cdot p
 $$
 
-, for our scale value $p \in \mathbb{R}$. Still inside our Eutopian system, we would have that $\phi_F(t) = \phi_L(t)$ for all $t \in [t_{min}, t_{max}]$. 
+, for our scale value $p \in \mathbb{R_{>0}}$. Still inside our Eutopian system, we would have that $\phi_F(t) = \phi_L(t)$ for all $t \in [t_{min}, t_{max}]$. 
 
 ## Hypothesis
 
-Define our divergence bias to be a number $D$ such that if $|\phi_L(t) - \phi_F(t)| > D$, then $L$ and $F$ are diverging at time $t$ ($\phi_L$ and $\phi_F$ are diverging at time $t$). If $\partial D > 0$ on $[a,b]$, then $L$ and $F$ are in a diverging state on $[a,b]$.
+Define our divergence bias to be a number $D \in \mathbb{R_{>0}}$ such that if $|\phi_L(t) - \phi_F(t)| > D$, then $L$ and $F$ are diverging at time $t$ ($\phi_L$ and $\phi_F$ are diverging at time $t$). If $\partial D > 0$ on $[a,b]$, then $L$ and $F$ are in a diverging state on $[a,b]$.
 
 **As $D$ increases, the probability that $L$ and $F$ will reconverge increases.**
 
