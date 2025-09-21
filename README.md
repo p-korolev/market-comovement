@@ -43,7 +43,7 @@ Define our divergence bias to be a number $D$ such that if $|\phi_L(t) - \phi_F(
 **As $D$ increases, the probability that $L$ and $F$ will reconverge increases.**
 
 $$
-\text{(H1) }\large{\partial D > 0 \text{ on } [t_i, t_j] \implies \text{P}(|\phi_L(t_{j+1}) - \phi_F(t_{j+1})| < |\phi_L(t_j) - \phi_F(t_j)|) \to 1}
+\partial D > 0 \text{ on } [t_i, t_j] \implies \text{P}(|\phi_L(t_{j+1}) - \phi_F(t_{j+1})| < |\phi_L(t_j) - \phi_F(t_j)|) \to 1
 $$
 
 ## Divergent States as Area
